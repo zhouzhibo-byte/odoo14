@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="wl_product_type_tree_view" model="ir.ui.view">
+            <field name="name">wl.product.type.tree</field>
+            <field name="model">wl.product.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="come_place"/>
+                    <field name="wl_ids"/>
+                    <field name="wl_color_ids"/>
+                    <field name="remarks"/>
+                </tree>
+            </field>
+        </record>
+        <record id="wl_product_type_form_view" model="ir.ui.view">
+            <field name="name">wl.product.type.form</field>
+            <field name="model">wl.product.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <group>
+                                <field name="name" />
+                            </group>
+                        </div>
+                        <div>
+                            <group>
+                                <field name="come_place"/>
+                                <field name="wl_ids"/>
+                                <field name="wl_color_ids"/>
+                                <field name="remarks"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+

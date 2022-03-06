@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding="utf-8" ?>
+<odoo>
+    <menuitem name="人员工资管理" id="pem_salary_menu" sequence="0" />
+    <menuitem name="工资表" id="pem_wages_menu" action="action_pem_wages" parent="pem_salary_menu" sequence="5" />
+    <menuitem name="工资成分" id="pem_salary_components_menu" parent="pem_salary_menu" sequence="10" />
+    <menuitem name="税表" id="pem_personal_tax_menu" action="action_pem_personal_tax" parent="pem_salary_components_menu" sequence="5" />
+    <menuitem name="社保" id="pem_social_insurance_menu" action="action_pem_social_insurance" parent="pem_salary_components_menu" sequence="10" />
+    <menuitem name="公积金" id="pem_accumulation_fund_menu" action="action_pem_accumulation_fund" parent="pem_salary_components_menu" sequence="15" />
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+    <record id="view_test_tree" model="ir.ui.view">
+      <field name="name">book.test.tree</field>
+      <field name="model">zerone.book</field>
+      <field name="arch" type="xml">
+        <tree string="Books">
+          <field name="name"/>
+          <field name="code"/>
+          <field name='state'/>
+        </tree>
+      </field>
+    </record>
+  </data>
+</odoo>

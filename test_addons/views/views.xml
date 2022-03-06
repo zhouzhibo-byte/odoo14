@@ -1,0 +1,37 @@
+<odoo>
+  <data>
+    <record id="pem_wages_view_form" model="ir.ui.view">
+        <field name="name">pem.wages.form</field>
+        <field name="model">test_addons.test_addons</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name='action_approve' string="提交" type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+      <record id="t1_act_window1" model="ir.actions.act_window">
+            <field name="name">ModelTitle1</field>
+            <field name="res_model">test_addons.test_addons</field>
+            <field name="view_mode">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new ModelTitle.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="ModelTitle1" id="t1_menu1" />
+      <menuitem name="m1" id="t1_menu2" action="t1_act_window1" parent="t1_menu1"/>
+
+
+  </data>
+</odoo>

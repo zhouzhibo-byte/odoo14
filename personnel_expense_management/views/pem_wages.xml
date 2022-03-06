@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="seq_pem_wages" model="ir.sequence">
+        <field name="name">工资条目</field>
+        <field name="code">pem.wages</field>
+        <field name="prefix">FUND%(year)s%(month)s%(day)s</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="pem_wages_view_search" model="ir.ui.view">
+        <field name="name">pem.wages.search</field>
+        <field name="model">pem.wages</field>
+        <field name="arch" type="xml">
+            <search >
+                <field name='name' string="工资单号" />
+                <field name='company_id' string="公司" />
+            </search>
+        </field>
+    </record>
+
+    <record id="pem_wages_view_tree" model="ir.ui.view" >
+        <field name="name">pem.wages.view.tree</field>
+        <field name="model">pem.wages</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="user_name"/>
+                <field name="date" />
+                <field name="company_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="pem_wages_view_form" model="ir.ui.view">
+        <field name="name">pem.wages.form</field>
+        <field name="model">pem.wages</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name='action_approve' string="提交" type="object" class="btn-primary" states="draft" />
+                    <button name='action_complete' string="审批" type="object" class="btn-primary" states="approve" />
+                    <button name='action_create' string="完成" type="object" class="btn-primary" states="complete" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approve,complete"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <div>
+                        <group>
+                            <div colspan="2" style="margin-bottom:20px;width:100%;border-bottom:solid 7px rgb(214, 216, 217);">
+                                <label string="工资基本信息" style="margin:0px;font-weight:bold;font-size:150%;padding-left:5px;padding-right:5px;padding-top:3px;color:rgb(47, 49, 54);background-color:rgb(214, 216, 217);"/>
+                            </div>
+                            <field name="user_name" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="date"/>
+                            <field name="company_id" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                    </div>
+                    <notebook>
+                        <page string="工资明细">
+                            <field name="wages_line_ids" mode="tree,kanban">
+                                <form>
+                                    <group>
+                                        <field name="user_id" options="{'no_create': True, 'no_open': True}"/>
+                                        <field name="account_payable"/>
+                                        <field name="account_payment"/>
+                                        <field name="resource_travel_expenses"/>
+                                        <field name="provided_company_id" options="{'no_create': True, 'no_open': True}"/>
+                                    </group>
+                                </form>
+                                <tree editable="bottom">
+                                    <field name="user_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="account_payable"/>
+                                    <field name="account_payment"/>
+                                    <field name="resource_travel_expenses"/>
+                                    <field name="provided_company_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <button name="action_pem_salary_related_expenses_details" string="查看工资相关费用" type="object" class="btn-warning" />
+                                </tree>
+                                <kanban class="o_kanban_mobile">
+                                    <field name="user_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="account_payable"/>
+                                    <field name="account_payment"/>
+                                    <field name="resource_travel_expenses"/>
+                                    <field name="provided_company_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                                <div class="row">
+                                                    <div class="col-xs-6">
+                                                        <strong>
+                                                            <span>姓名：<t t-esc="record.user_id.value"/></span>
+                                                        </strong>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <strong>
+                                                            <span>应发：<t t-esc="record.account_payable.value"/></span>
+                                                        </strong>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <strong>
+                                                            <span>实发：<t t-esc="record.account_payment.value"/></span>
+                                                        </strong>
+                                                    </div>
+                                                     <div class="col-xs-6">
+                                                        <strong>
+                                                            <span>人资差旅费：<t t-esc="record.resource_travel_expenses.value"/></span>
+                                                        </strong>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <strong>
+                                                            <span>发放公司：<t t-esc="record.provided_company_id.value"/></span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="pem_wages_view_finish_form" model="ir.ui.view">
+        <field name="name">pem.wages.finish.form</field>
+        <field name="model">pem.wages</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form create="false" delete="false" edit="false">
+                <sheet>
+                    <label string="相关表数据创建成功！"/>
+                </sheet>
+                <footer>
+                    <button string="确定" class="btn-primary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pem_wages" model="ir.actions.act_window">
+        <field name="name">工资条目</field>
+        <field name="res_model">pem.wages</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="pem_wages_view_form" />
+        <field name="target">current</field>
+    </record>
+
+</odoo>

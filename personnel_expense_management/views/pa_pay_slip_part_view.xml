@@ -1,0 +1,90 @@
+<odoo>
+    <record id="pa_pay_slip_part_view_form" model="ir.ui.view">
+            <field name="name">pa.pay.slip.part.form</field>
+            <field name="model">pa.pay.slip</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <div colspan="2"
+                         style="margin-bottom:20px;width:100%;border-bottom:solid 4px rgb(214, 216, 217);">
+                        <label string="绩效与差旅"
+                               style="margin:0px;font-weight:bold;font-size:150%;padding-left:5px;padding-right:5px;padding-top:3px;color:rgb(47, 49, 54);background-color:rgb(214, 216, 217);"/>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="performance_bonus"/>
+                                <field name="quarter_performance_supplement"/>
+                                <field name="year_performance_supplement"/>
+                                <field name="performance_exceeding"/>
+                            </group>
+                            <group>
+                                <field name="travel_expense"/>
+                                <field name="quarter_travel_supplement"/>
+                                <field name="year_travel_supplement"/>
+                            </group>
+                        </group>
+
+                        <div colspan="2"
+                         style="margin-bottom:20px;width:100%;border-bottom:solid 4px rgb(214, 216, 217);">
+                        <label string="代扣与扣款"
+                               style="margin:0px;font-weight:bold;font-size:150%;padding-left:5px;padding-right:5px;padding-top:3px;color:rgb(47, 49, 54);background-color:rgb(214, 216, 217);"/>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="social_security_fund"/>
+                                <field name="provident_fund"/>
+                                <field name="personal_income_tax"/>
+                                <field name="withholding_social_security_reserve"/>
+                                <field name="daily_sales_work_assessment"/>
+                            </group>
+                            <group>
+                                <field name="meal_deductions"/>
+                                <field name="attendance_deductions"/>
+                                <field name="personal_loan"/>
+                                <field name="other_deductions"/>
+                            </group>
+                        </group>
+
+                        <div colspan="2"
+                         style="margin-bottom:20px;width:100%;border-bottom:solid 4px rgb(214, 216, 217);">
+                        <label string="补贴与奖金"
+                               style="margin:0px;font-weight:bold;font-size:150%;padding-left:5px;padding-right:5px;padding-top:3px;color:rgb(47, 49, 54);background-color:rgb(214, 216, 217);"/>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="housing_subsidy"/>
+                                <field name="phone_fee_subsidy"/>
+                                <field name="other_subsidy"/>
+                                <field name="high_temperature_subsidy"/>
+                            </group>
+                            <group>
+                                <field name="job_reward"/>
+                                <field name="sales_process_award"/>
+                                <field name="k2"/>
+                                <field name="december_bonus"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <group>
+                                    <field name="real_wage"/>
+                                    <label string="所在年月："/>
+                                    <div>
+                                        <field name="year"
+                                               class="oe_inline"/>年
+                                        <field name="month"
+                                               class="oe_inline"/>月
+                                    </div>
+                                    <field name="time_post"/>
+                                </group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="seq_t1" model="ir.sequence">
+            <field name="name">编号</field>
+            <field name="code">t1</field>
+            <field name="prefix">BOMJA%(year)s%(month)s%(day)s</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="t1_form_view22" model="ir.ui.view">
+            <field name="name">t1.form22</field>
+            <field name="model">test.t1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="t1_form_view" model="ir.ui.view">
+            <field name="name">t1.form</field>
+            <field name="model">test.t1</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle" create="false" edit="false" delete="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="user_id"/>
+                            </group>
+                            <group>
+                                <label string="label1" for="name"/>
+                                <label string="label2" for="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="t1_act_window2" model="ir.actions.act_window">
+            <field name="name">ModelTitle2</field>
+            <field name="res_model">test.t1</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new ModelTitle.
+                </p>
+            </field>
+        </record>
+        <menuitem name="t1" id="t1_menu3" action="t1_act_window2" parent="t1_menu1"/>
+    </data>
+</odoo>

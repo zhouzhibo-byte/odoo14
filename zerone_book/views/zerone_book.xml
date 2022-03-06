@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 主菜单列表视图 -->
+        <record id="view_books_tree" model="ir.ui.view">
+            <field name="name">book.tree</field>
+            <field name="model">zerone.book</field>
+            <field name="arch" type="xml">
+                <tree string="Books">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name='state'/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_books_form" model="ir.ui.view">
+            <field name="name">zerone.book.form</field>
+            <field name="model">zerone.book</field>
+            <field name="arch" type="xml">
+                <form string="Books" create="false">
+                    <sheet string="Books">
+                        <div style="text-align: center"><h1>图书FORM</h1></div>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="state"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--借出列表视图-->
+        <record id="view_zerone_books_tree" model="ir.ui.view">
+            <field name="name">zerone.book.tree</field>
+            <field name="model">zerone.book</field>
+            <field name="arch" type="xml">
+                <tree string="Books" create="false" import="false">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name='state'/>
+                </tree>
+            </field>
+        </record>
+        <!--借出form视图-->
+        <record id="view_zerone_books_form" model="ir.ui.view">
+            <field name="name">zerone.book.form</field>
+            <field name="model">zerone.book</field>
+            <field name="arch" type="xml">
+                <form string="Books" create="false">
+                    <header>
+                        <button name="action_bjl" type="object" string="不借了" class="oe_highlight" states="rent"/>
+                        <button name="action_jc" type="object" string="借出" class="oe_highlight" states="draft"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,rent,return"/>
+                    </header>
+                    <sheet string="Books">
+                        <div style="text-align: center"><h1>借书FORM</h1></div>
+                        <group col='4'>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--还书列表视图-->
+        <record id="view_huanshu_books_tree" model="ir.ui.view">
+            <field name="name">huanshu.book.tree</field>
+            <field name="model">zerone.book</field>
+            <field name="arch" type="xml">
+                <tree string="Books" create="false" import="false">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name='state'/>
+                </tree>
+            </field>
+        </record>
+        <!--归还form视图-->
+        <record id="view_huanshu_books_form" model="ir.ui.view">
+            <field name="name">huanshu.book.form</field>
+            <field name="model">zerone.book</field>
+            <field name="arch" type="xml">
+                <form string="Books" create="false">
+                    <header>
+                        <button name="action_gh" type="object" string="归还" class="oe_highlight" states="rent"/>
+                        <button name="action_xbhl" type="object" string="先不还了" class="oe_highlight" states="return"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,rent,return"/>
+                    </header>
+                    <sheet string="Books">
+                        <div style="text-align: center"><h1>还书FORM</h1></div>
+                        <group col='4'>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+<!--        主菜单栏-->
+        <record id="action_books" model="ir.actions.act_window">
+            <field name="name">图书</field>
+            <field name="res_model">zerone.book</field>
+<!--            <field name="view_mode">tree</field>-->
+<!--            <field name="view_id" ref="view_books_tree"/>-->
+        </record>
+
+        <record id="action_books_w" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name='view_id' ref="view_books_tree"/>
+            <field name="act_window_id" ref="action_books" />
+        </record>
+
+        <record id="action_books_t" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name='view_id' ref="view_books_form"/>
+            <field name="act_window_id" ref="action_books" />
+        </record>
+
+
+        <!--借出动作-->
+        <record id="action_zerone_books" model="ir.actions.act_window">
+            <field name="name">借书</field>
+            <field name="res_model">zerone.book</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_zerone_books_tree"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="jieshu_1">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_zerone_books_tree"/>
+            <field name="act_window_id" ref="action_zerone_books"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="jieshu_2">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_zerone_books_form"/>
+            <field name="act_window_id" ref="action_zerone_books"/>
+        </record>
+        <!-- 还书动作 -->
+        <record id="action_huanshu_books" model="ir.actions.act_window">
+            <field name="name">还书</field>
+            <field name="res_model">zerone.book</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_huanshu_books_tree"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="huanshu_1">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_huanshu_books_tree"/>
+            <field name="act_window_id" ref="action_huanshu_books"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="huanshu_2">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_huanshu_books_form"/>
+            <field name="act_window_id" ref="action_huanshu_books"/>
+        </record>
+<!--        测试-->
+        <record id="action_test" model="ir.actions.act_window">
+            <field name="name">测试</field>
+            <field name="res_model">zerone.book</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_test_tree" />
+        </record>
+
+        <menuitem name="Library Books" id="menu_books_root" sequence="50" />
+        <menuitem name="图书" id="menu_books_sec" action="action_books" parent="menu_books_root" sequence="51" />
+        <menuitem action="action_zerone_books" id="menu_zerone_books" name="借书" parent="menu_books_root" sequence="52"/>
+        <menuitem action="action_huanshu_books" id="menu_guihuan_books" name="还书" parent="menu_books_root" sequence="53"/>
+        <menuitem action="action_test" id="menu_test_sec" name="测试" parent="menu_books_root" sequence="54"/>
+    </data>
+</odoo>

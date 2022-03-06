@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="wl_plan_act_window" model="ir.actions.act_window">
+            <field name="name">物料清单</field>
+            <field name="res_model">wl.plan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="wl_product_act_window" model="ir.actions.act_window">
+            <field name="name">产品清单</field>
+            <field name="res_model">wl.product.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="物料产品管理" id="wl_plan_menu_root" sequence="0"/>
+        <menuitem name="物料管理" id="sec_wl_plan_menu" parent="wl_plan_menu_root" action="wl_plan_act_window" sequence="2"/>
+        <menuitem name="产品管理" id="sec_wl_product_menu" parent="wl_plan_menu_root" action="wl_product_act_window"
+                  sequence="5"/>
+    </data>
+</odoo>

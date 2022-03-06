@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding="utf-8" ?>
+<odoo>
+    <record id="library_book_action"
+            model="ir.actions.act_window">
+        <field name="name">Library Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="library_book_category_action"
+            model="ir.actions.act_window">
+        <field name="name">Library Book Category</field>
+        <field name="res_model">library.book.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="res_partner_action"
+            model="ir.actions.act_window">
+        <field name="name">Res_Partner</field>
+        <field name="res_model">res.partner.me</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="partner_action"
+            model="ir.actions.act_window">
+        <field name="name">Partner</field>
+        <field name="res_model">parent</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="My Library" id="libray_base_menu" sequence="0"/>
+    <menuitem name="Books" id="library_book_menu_sec"
+              parent="libray_base_menu" action="library_book_action" sequence="3"/>
+    <menuitem name="Categries" id="book_category_menu_sec"
+              parent="libray_base_menu" action="library_book_category_action" sequence="5"/>
+    <menuitem name="res partner" id="res_partner_menu_sec"
+              parent="libray_base_menu" action="res_partner_action" sequence="7"/>
+    <menuitem name="partner" id="partner_menu_sec"
+              parent="libray_base_menu" action="partner_action" sequence="9"/>
+</odoo>

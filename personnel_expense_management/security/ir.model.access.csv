@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_pem_personal_tax_test,individual.income.tax,model_pem_personal_tax,base.group_user,1,1,1,1
+access_pem_personal_tax_test1,individual.income.tax1,model_pem_personal_tax,group_hr_mgmt_hr_entry_read,1,0,0,0
+access_pem_personal_tax_test2,individual.income.tax2,model_pem_personal_tax,group_hr_mgmt_hr_entry_create,0,0,1,0
+access_pem_personal_tax_test3,individual.income.tax3,model_pem_personal_tax,group_hr_mgmt_hr_entry_write,0,1,0,0
+access_pem_personal_tax_test4,individual.income.tax4,model_pem_personal_tax,group_hr_mgmt_hr_entry_del,0,0,0,1

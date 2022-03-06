@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_button_tree" model="ir.ui.view">
+            <field name="name">button.tree</field>
+            <field name="model">button.test</field>
+            <field name="arch" type="xml">
+                <tree string="button">
+                    <field name="name"/>
+                    <field name='state'/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_button_form" model="ir.ui.view">
+            <field name="name">button.test.form</field>
+            <field name="model">button.test</field>
+            <field name="arch" type="xml">
+                <form string="button2" create="false">
+
+                    <sheet string="button">
+                        <div style="text-align: center"><h1>按钮</h1></div>
+                        <group col="4">
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_test" model="ir.actions.act_window">
+            <field name="name">测试</field>
+            <field name="res_model">button.test</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Button Test" id="menu_books_root1" sequence="50" />
+        <menuitem action="action_test" id="menu_test_sec" name="按钮测试" parent="menu_books_root1" sequence="54"/>
+
+    </data>
+</odoo>

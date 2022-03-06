@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="wl_plan_tree_views" model="ir.ui.view">
+            <field name="name">wl.plan.tree</field>
+            <field name="model">wl.plan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="product_id"/>
+                    <field name="remarks"/>
+                </tree>
+            </field>
+        </record>
+        <record id="wl_plan_form_views_aaa" model="ir.ui.view">
+            <field name="name">wl.plan.form</field>
+            <field name="model">wl.plan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <group>
+                                    <field name="name" required="1"/>
+                                </group>
+                            </h1>
+                        </div>
+                        <div>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="date" />
+                                <field name="start_time"/>
+                                <field name="end_time"/>
+                                <field name="store_time" />
+                            </group>
+                        </div>
+                        <notebook>
+                            <page string="BOM列表">
+                                <field name="wl_bom_lines" model="tree">
+                                    <tree editabel="bottom">
+                                        <field name="name" />
+                                        <field name="amount" />
+                                        <field name="wl_plan_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="备注">
+                                <field name="remarks" placeholder="备注信息"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+<!--        <record id="wl_plan_act_window" model="ir.actions.act_window">-->
+<!--            <field name="name">物料清单</field>-->
+<!--            <field name="res_model">wl.plan</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+<!--        <menuitem name="物料产品管理" id="wl_plan_menu_root" sequence="0"/>-->
+<!--        <menuitem name="物料管理" id="sec_wl_plan_menu" parent="wl_plan_menu_root" action="wl_plan_act_window" sequence="2"/>-->
+    </data>
+</odoo>
